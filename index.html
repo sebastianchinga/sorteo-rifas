@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rifa de Participantes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Rifa de Participantes</h1>
+
+    <form id="formulario">
+        <label for="nombre">Nombre del Participante:</label>
+        <!-- <div class="alerta alerta-danger">Agrega un participante</div> -->
+        <input type="text" id="nombre" name="nombre">
+        <input type="submit" value="Agregar Participante">
+    </form>
+
+    <section class="participantes">
+        <h2 id="participantes_id">Lista de Participantes</h2>
+
+        <ul id="lista">
+            
+        </ul>
+        <button class="boton-sorteo" id="btnSortear">Sortear participantes</button>
+    </section>
+
+    <!-- <section class="ganadores">
+        <h2>Ganador</h2>
+        <p>El ganador es: <span>Juan Sebastian</span></p>
+    </section> -->
+
+    <script src="app.js"></script>
+</body>
+
+</html>
