@@ -2,6 +2,7 @@ const nombreInput = document.querySelector('#nombre');
 const formulario = document.querySelector('#formulario');
 const participantesLista = document.querySelector('#lista');
 const btnSortear = document.querySelector('#btnSortear');
+const spiner = document.querySelector('#spiner');
 
 
 formulario.addEventListener('submit', enviarFormulario);
@@ -50,7 +51,7 @@ class UI {
 
             participantesLista.appendChild(item);
 
-            
+
         });
     }
 
@@ -58,18 +59,34 @@ class UI {
         const divPrevio = document.querySelector('.ganadores');
         divPrevio?.remove();
         const ganadorDiv = document.createElement('section');
-        
+
         ganadorDiv.classList.add('ganadores');
         ganadorDiv.innerHTML = `
             <h2>Ganador</h2>
             <p>El ganador es <span>${ganador.nombre}</span></p>
         `;
 
-        document.querySelector('body').appendChild(ganadorDiv);
+        spiner.classList.remove('hidden');
+        spiner.classList.add('spiner');
 
         setTimeout(() => {
-            ganadorDiv.remove();
+            spiner.classList.remove('spiner');
+            spiner.classList.add('hidden');
+
+            document.querySelector('body').appendChild(ganadorDiv);
+
+            setTimeout(() => {
+                ganadorDiv.remove();
+            }, 4000);
+            
+
         }, 4000);
+
+        // document.querySelector('body').appendChild(ganadorDiv);
+
+        // setTimeout(() => {
+        //     ganadorDiv.remove();
+        // }, 4000);
     }
 
     mostrarAlerta(mensaje) {
@@ -134,7 +151,7 @@ function sortear() {
 }
 
 function validarBoton() {
-    const {participantes} = participante;
+    const { participantes } = participante;
 
     if (participantes.length === 0) {
         btnSortear.classList.add('desactivado');
@@ -146,5 +163,5 @@ function validarBoton() {
     btnSortear.classList.remove('desactivado');
     btnSortear.disabled = false;
 
-    
+
 }

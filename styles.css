@@ -13,6 +13,23 @@ h1 {
     color: #2c3e50;
 }
 
+.contenedor {
+    max-width: 1400px;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.spiner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.hidden {
+    display: none;
+}
+
 form {
     background-color: #fff;
     padding: 20px;
