@@ -10,6 +10,7 @@ nombreInput.addEventListener('change', validar);
 btnSortear.addEventListener('click', sortear);
 
 const participanteObj = {
+    id: generarId(),
     nombre: ''
 }
 
@@ -31,6 +32,11 @@ class Participante {
         return this.participantes[indice];
     }
 
+    eliminar(id) {
+        this.participantes = this.participantes.filter(participante => participante.id !== id);
+        return this.participantes;
+    }
+
 }
 
 class UI {
@@ -47,10 +53,19 @@ class UI {
         participantesArray.forEach(participanteIterado => {
 
             const item = document.createElement('li');
-            item.textContent = `${participanteIterado.nombre}`;
+
+            const span = document.createElement('span');
+            span.textContent = `${participanteIterado.nombre}`;
+
+            const btnEliminar = document.createElement('button');
+            btnEliminar.textContent = 'Eliminar';
+            btnEliminar.classList.add('btn-eliminar');
+            btnEliminar.onclick = () => eliminar(participanteIterado.id);
 
             participantesLista.appendChild(item);
 
+            item.appendChild(span);
+            item.appendChild(btnEliminar);
 
         });
     }
@@ -141,6 +156,7 @@ function validar(e) {
 
 function reiniciarObjeto() {
     Object.assign(participanteObj, {
+        id: generarId(),
         nombre: ''
     })
 }
@@ -151,6 +167,7 @@ function sortear() {
 }
 
 function validarBoton() {
+
     const { participantes } = participante;
 
     if (participantes.length === 0) {
@@ -163,5 +180,14 @@ function validarBoton() {
     btnSortear.classList.remove('desactivado');
     btnSortear.disabled = false;
 
+}
 
+function generarId() {
+    return Math.random().toString(36).substring(2) + Date.now();
+}
+
+function eliminar(id) {
+    const participantesRestante = participante.eliminar(id);
+    ui.mostrarParticipantes(participantesRestante);
+    validarBoton();
 }
